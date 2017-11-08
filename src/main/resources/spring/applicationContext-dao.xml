@@ -52,8 +52,32 @@
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <!-- 6.配置事务处理面（事务通知） -->
+    <tx:advice id="appAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 配置事务属性 -->
+            <!-- 默认值： isolation="DEFAULT" timeout="-1" propagation="REQUIRED" read-only="false" -->
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="batch*" propagation="REQUIRED"/>
+            <tx:method name="read*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="count*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
 
-    <!-- 6.配置基于注解的声明式事务 -->
+    <!-- 7.配置AOP事务 -->
+    <aop:config>
+        <!-- 配置事务切点 -->
+        <aop:pointcut expression="execution(* com.zsm.springmvc.service.*Service.*(..))" id="appPoint"/>
+        <!-- 结合事务切点与切面 -->
+        <aop:advisor advice-ref="appAdvice" pointcut-ref="appPoint"/>
+    </aop:config>
+
+    <!-- 8.配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

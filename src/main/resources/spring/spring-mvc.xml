@@ -48,4 +48,26 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="fastJsonHttpMessageConverter"
+          class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+                <!-- 避免IE出现下载JSON文件的情况 -->
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+        <property name="features">
+            <array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+                <value>WriteMapNullValue</value>
+                <value>QuoteFieldNames</value>
+                <value>DisableCircularReferenceDetect</value>
+            </array>
+        </property>
+    </bean>
+
+
+    <mvc:resources location="/resources/css/" mapping="/css/**"/>
+    <mvc:resources location="/resources/images/" mapping="/images/**"/>
+    <mvc:resources location="/resources/js/" mapping="/js/**"/>
 </beans>

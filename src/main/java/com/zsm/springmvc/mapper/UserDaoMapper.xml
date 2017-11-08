@@ -21,4 +21,8 @@
         SELECT * FROM student WHERE user_no = #{no}
     </select>
 
+    <select id="selectUserByName" resultType="com.zsm.springmvc.mdel.User" parameterType="java.lang.String">
+        SELECT * FROM student WHERE user_name = #{name}
+    </select>
+
 </mapper>
