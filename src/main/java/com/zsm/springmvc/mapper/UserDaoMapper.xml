@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mapper总结：namespace是该xml对应的dao接口全名，select和update中的id对应方法名，resultType是返回值类型，-->
+<!--parameterType是参数类型（这个其实可选），最后#{...}中填写的是方法的参数-->
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zsm.springmvc.dao.IUserDao">
+    <!--<resultMap id="BaseResultMap" type="com.zsm.springmvc.mdel.User">-->
+    <!--<id column="id" property="id" javaType="int" jdbcType="INTEGER"/>-->
+    <!--<result column="Sno" properuser_noerNo" javaType="int" jdbcType="INTEGER"/>-->
+    <!--<result column="Sname" properuser_nameName" javaType="string" jdbcType="VARCHAR"/>-->
+    <!--<result column="Ssex" properuser_sexrSex" javaType="string" jdbcType="VARCHAR"/>-->
+    <!--<result column="Sbirthday" properuser_birthdayirth" javaType="java.sql.Date" jdbcType="DATE"/>-->
+    <!--<result column="Class" properuser_classlass" javaType="string" jdbcType="VARCHAR"/>-->
+    <!--<result column="CreateTime" propercreatetimeTime" javaType="java.sql.Date" jdbcType="DATE"/>-->
+    <!--<result column="UpdateTime" properupdatetimeTime" javaType="java.sql.Date" jdbcType="DATE"/>-->
+    <!--</resultMap>-->
+
+    <select id="selectUserByNo" resultType="com.zsm.springmvc.mdel.User" parameterType="int">
+        SELECT * FROM student WHERE user_no = #{no}
+    </select>
+
+</mapper>
