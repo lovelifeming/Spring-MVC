@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IUserDao
 {
-    User selectUserByNo(int no);
+    User findUserByNo(int no);
 
-    User selectUserByName(String name);
+    User findUserByName(String name);
 }

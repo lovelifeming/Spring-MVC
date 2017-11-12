@@ -5,8 +5,9 @@ import com.zsm.springmvc.mdel.User;
 import com.zsm.springmvc.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -22,15 +23,17 @@ public class UserServiceImpl implements IUserService
     private IUserDao userDao;
 
     @Override
-    public User selectUserByNo(int no)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Throwable.class)
+    public User findUserByNo(int no)
     {
-        User user = userDao.selectUserByNo(no);
+        User user = userDao.findUserByNo(no);
         return user;
     }
 
     @Override
-    public User selectUserByName(String name)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public User findUserByName(String name)
     {
-        return userDao.selectUserByName(name);
+        return userDao.findUserByName(name);
     }
 }

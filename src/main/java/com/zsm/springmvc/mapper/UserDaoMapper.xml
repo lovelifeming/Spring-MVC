@@ -17,11 +17,11 @@
     <!--<result column="UpdateTime" properupdatetimeTime" javaType="java.sql.Date" jdbcType="DATE"/>-->
     <!--</resultMap>-->
 
-    <select id="selectUserByNo" resultType="com.zsm.springmvc.mdel.User" parameterType="int">
+    <select id="findUserByNo" resultType="com.zsm.springmvc.mdel.User" parameterType="int">
         SELECT * FROM student WHERE user_no = #{no}
     </select>
 
-    <select id="selectUserByName" resultType="com.zsm.springmvc.mdel.User" parameterType="java.lang.String">
+    <select id="findUserByName" resultType="com.zsm.springmvc.mdel.User" parameterType="java.lang.String">
         SELECT * FROM student WHERE user_name = #{name}
     </select>
 

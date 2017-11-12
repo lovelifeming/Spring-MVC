@@ -12,14 +12,10 @@
 
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
     <context:property-placeholder location="classpath:/properties/jdbc.properties"/>
+    <context:component-scan base-package="com.zsm.springmvc.controller"/>
 
     <!--导入applicationContext配置文件-->
     <import resource="applicationContext-dao.xml"></import>
-
-    <!-- 扫描web相关的bean 扫描包下所有使用注解的类型 -->
-    <context:component-scan base-package="com.zsm.springmvc.controller"/>
-    <context:component-scan base-package="com.zsm.springmvc.service"/>
-    <context:component-scan base-package="com.zsm.springmvc.dao"/>
 
     <!-- 1.开启SpringMVC注解模式 -->
     <mvc:annotation-driven>
@@ -66,6 +62,20 @@
         </property>
     </bean>
 
+    <bean id="jsonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 上传文件实现类  id 固定-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 控制上传图片的大小 B-->
+        <property name="maxUploadSize" value="314572800"></property>
+    </bean>
 
     <mvc:resources location="/resources/css/" mapping="/css/**"/>
     <mvc:resources location="/resources/images/" mapping="/images/**"/>

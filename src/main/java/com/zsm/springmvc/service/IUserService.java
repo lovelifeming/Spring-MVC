@@ -12,7 +12,7 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
  */
 public interface IUserService
 {
-    User selectUserByNo(int no);
+    User findUserByNo(int no);
 
-    User selectUserByName(String name);
+    User findUserByName(String name);
 }
