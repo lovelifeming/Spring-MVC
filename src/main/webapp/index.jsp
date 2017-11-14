@@ -2,13 +2,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <script src="resources/js/lib/jquery-3.1.1.js"></script>
+    <link rel="icon" href="/resources/images/favicon.ico">
+    <script type="text/javascript" src="/resources/js/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <h2>Hello World!</h2>
 <div>
-    <a href="/WEB-INF/view/test_request.jsp">Test Request</a>
-    <a href="/WEB-INF/view/test_upload.jsp">Test Upload</a>
+    <a href="/view/test_request.jsp">Test Request</a>
+    <a href="/test_upload.jsp">Test Upload</a>
 </div>
 <div>
     <form name="user_no_form">
@@ -44,13 +45,13 @@
         <button type="button" onclick="commitRequest4()">Commit</button>
     </form>
 </div>
-<div>
+<%--<div>
     <label>上传文件示例</label>
     <form action="/upload/file" method="post" enctype="multipart/form-data">
         <input type="file" name="file"/>
         <input type="submit" value="Commit">
     </form>
-</div>
+</div>--%>
 
 </body>
 <script type="text/javascript">
@@ -73,7 +74,7 @@
         $.ajax({
             type: 'POST',
             url: "/user/finduser1",
-            dataType: "application/json",
+            dataType: "son",
             async: true,
             data: JSON.stringify({"username": document.getElementById("user_name").value}),
             success: function (data) {
@@ -88,7 +89,7 @@
         $.ajax({
             type: 'POST',
             url: "/user/finduser2",
-            dataType: "application/json",
+            dataType: "json",
             async: true,
             data: JSON.stringify({
                 "username": user_from1.name.value,
@@ -105,8 +106,8 @@
     var commitRequest3 = function () {
         $.ajax({
             type: 'POST',
-            url: "/user/finduser1",
-            dataType: "application/json",
+            url: "/user/finduser3",
+            dataType: "json",
             async: true,
             data: JSON.stringify({"username": document.getElementById("user_name2").value}),
             success: function (data) {
@@ -121,12 +122,12 @@
         $.ajax({
             type: 'POST',
             url: "/user/finduser4",
-            context: "application/json",
+            context: "json",
             async: true,
-            data: JSON.stringify({
+            data: {
                 "username": document.getElementById("user_name3").value,
                 "pwd": document.getElementById("user_pwd3").value
-            }),
+            },
             success: function (data) {
                 alert(data);
             },

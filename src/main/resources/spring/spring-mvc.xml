@@ -71,12 +71,6 @@
         </property>
     </bean>
 
-    <!-- 上传文件实现类  id 固定-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 控制上传图片的大小 B-->
-        <property name="maxUploadSize" value="314572800"></property>
-    </bean>
-
     <mvc:resources location="/resources/css/" mapping="/css/**"/>
     <mvc:resources location="/resources/images/" mapping="/images/**"/>
     <mvc:resources location="/resources/js/" mapping="/js/**"/>
