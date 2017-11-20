@@ -57,6 +57,7 @@
         <itextpdf.version>5.5.12</itextpdf.version>
         <itext-asian.version>5.2.0</itext-asian.version>
         <itext.version>4.2.2</itext.version>
+        <cas-client-core.version>3.4.1</cas-client-core.version>
     </properties>
 
     <dependencies>
@@ -309,6 +310,12 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <!-- cas 单点登录 -->
+        <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>${cas-client-core.version}</version>
         </dependency>
 
     </dependencies>

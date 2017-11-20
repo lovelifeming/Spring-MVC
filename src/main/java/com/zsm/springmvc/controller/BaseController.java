@@ -2,9 +2,13 @@ package com.zsm.springmvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.nashorn.internal.parser.JSONParser;
+import net.sf.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 
 /**
@@ -38,5 +42,23 @@ public class BaseController
         {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取请求Request里面的参数
+     *
+     * @param request
+     * @return
+     */
+    public static JSONObject readValueFromRequest(HttpServletRequest request)
+    {
+        StringBuilder sb = new StringBuilder();
+        Enumeration en = request.getParameterNames();
+        while (en.hasMoreElements())
+        {
+            sb.append(en.nextElement());
+        }
+        JSONObject json = JSONObject.fromObject(sb.toString());
+        return json;
     }
 }

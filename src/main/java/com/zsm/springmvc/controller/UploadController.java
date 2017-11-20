@@ -23,7 +23,7 @@ import java.util.logging.SimpleFormatter;
  */
 @Controller
 @RequestMapping("/upload/")
-public class UploadFiles
+public class UploadController
 {
     @RequestMapping(value = "file")
     public void uploadFile(HttpServletRequest request, HttpServletResponse response)
