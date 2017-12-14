@@ -1,7 +1,7 @@
 /**
  * Created by zsm on 2017/11/17.
  */
-var commitRequest5 = function () {
+var commitRequest = function () {
     $.ajax({
         type: 'POST',
         url: "/user/finduser4",
@@ -85,6 +85,11 @@ function getPastQuarterly() {
     var pastMonth = pastDate.getMonth() + 1;
     var pastDay = pastDate.getDate();
     return pastYear + "-" + pastMonth + "-" + pastDay;
+    var name=document.getElementsByName("name");    //根据名字获取节点对象
+    var tag=document.getElementsByTagName("tagName");    //根据标签获取节点对象
+    $("selector")     //type或者标签
+    $(".selector")     //class
+    $("#selector")     //id
 }
 
 /**

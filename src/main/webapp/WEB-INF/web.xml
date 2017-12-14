@@ -46,6 +46,10 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <session-config>
+        <!--设置session超时时间  单位：分钟 Tomcat中Session的默认超时时间为20分钟-->
+        <session-timeout>60</session-timeout>
+    </session-config>
 
     <!--   /****cas配置******/ -->
     <!-- 与CAS Single Sign Out Filter配合，注销登录信息 -->
