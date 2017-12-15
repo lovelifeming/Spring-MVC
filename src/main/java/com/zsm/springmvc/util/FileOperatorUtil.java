@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
  * @Date:Created in 2017/11/10 21:17.
  * @Modified By:
  */
-public class FileOperatorUtils
+public class FileOperatorUtil
 {
     /**
      * 获取FileOperatorUtils文件相对的根路径
@@ -21,7 +21,7 @@ public class FileOperatorUtils
         String filePath = null;
         try
         {
-            filePath = new FileOperatorUtils().getClass().getResource("/").toURI().getPath();
+            filePath = new FileOperatorUtil().getClass().getResource("/").toURI().getPath();
         }
         catch (URISyntaxException e)
         {

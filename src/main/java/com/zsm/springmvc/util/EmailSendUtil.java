@@ -19,7 +19,7 @@ import java.util.Properties;
  * @Date:Created in 2017/11/10 23:18.
  * @Modified By:
  */
-public class EmailSendUtils
+public class EmailSendUtil
 {
     public static void sendMail(String host, String sender, String nickname, String password, String[] receivers,
                                 String subject, String content) throws Exception

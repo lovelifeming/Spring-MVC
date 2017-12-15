@@ -9,7 +9,7 @@ import jdk.nashorn.internal.parser.JSONParser;
  * @Date:Created in 2017/11/10 21:17.
  * @Modified By:
  */
-public class JSONUtils
+public class JSONUtil
 {
 
 }

@@ -17,6 +17,7 @@
     <!--<result column="UpdateTime" properupdatetimeTime" javaType="java.sql.Date" jdbcType="DATE"/>-->
     <!--</resultMap>-->
 
+    <!--返回类型 resultType  返回Map resultMap-->
     <select id="findUserByNo" resultType="com.zsm.springmvc.mdel.User" parameterType="int">
         SELECT * FROM student WHERE user_no = #{no}
     </select>

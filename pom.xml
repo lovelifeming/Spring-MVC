@@ -58,6 +58,7 @@
         <itext-asian.version>5.2.0</itext-asian.version>
         <itext.version>4.2.2</itext.version>
         <cas-client-core.version>3.4.1</cas-client-core.version>
+        <cors-filter.version>2.2.1</cors-filter.version>
     </properties>
 
     <dependencies>
@@ -316,6 +317,12 @@
             <groupId>org.jasig.cas.client</groupId>
             <artifactId>cas-client-core</artifactId>
             <version>${cas-client-core.version}</version>
+        </dependency>
+        <!-- 跨域jar包 -->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>${cors-filter.version}</version>
         </dependency>
 
     </dependencies>

@@ -51,6 +51,24 @@
         <session-timeout>60</session-timeout>
     </session-config>
 
+    <!-- 支持跨域 -->
+    <filter>
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+        <init-param>
+            <param-name>cors.allowOrin</param-name>
+            <param-value>*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.supportedMethods</param-name>
+            <param-value>GET, POST, HEAD, PUT, DELETE, OPTIONS</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
     <!--   /****cas配置******/ -->
     <!-- 与CAS Single Sign Out Filter配合，注销登录信息 -->
     <!--<listener>
