@@ -36,4 +36,7 @@ function dynamicDrawEchart(param) {
         series: param.series
     };
     param.echart.setOption(option, true);
+    $(window).resize(function () {
+        param.echart.resize();
+    });
 }

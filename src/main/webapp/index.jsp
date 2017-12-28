@@ -15,4 +15,29 @@
 
 </div>
 </body>
+<script type="text/javascript">
+    // Echarts require方式引入  路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar',
+            'echarts/chart/line'
+        ],
+        drawEcharts
+    );
+
+    function drawEcharts(ec) {
+        drawChart(ec);
+    }
+
+    function drawChart(ec) {
+
+    };
+</script>
 </html>
