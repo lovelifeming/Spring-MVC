@@ -24,14 +24,28 @@ public class GetController
     /**
      * 通过@PathVariable获取路径中的参数
      *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "finduser/all", method = RequestMethod.GET)
+    public void findUserByName(HttpServletRequest request, HttpServletResponse response)
+    {
+        JSONObject json = BaseController.readValueFromRequest(request);
+        System.out.println("username is all");
+    }
+
+    /**
+     * 通过@PathVariable获取路径中的参数
+     *
      * @param username
      * @param request
      * @param response
      */
-    @RequestMapping(value = "finduser3/{username}", method = RequestMethod.GET)
-    public void findUserByName3(@PathVariable String username, HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(value = "finduser1/{username}", method = RequestMethod.GET)
+    public void findUserByName1(@PathVariable String username, HttpServletRequest request, HttpServletResponse response)
     {
         JSONObject json = BaseController.readValueFromRequest(request);
         System.out.println("username is:" + username);
     }
+
 }
