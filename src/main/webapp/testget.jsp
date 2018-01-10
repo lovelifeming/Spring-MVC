@@ -9,8 +9,13 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="application/javascript" src="resources/js/lib/jquery-3.2.1.min.js"></script>
+    <script type="application/javascript" src="resources/js/lib/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
 
+</div>
 </body>
+<
 </html>

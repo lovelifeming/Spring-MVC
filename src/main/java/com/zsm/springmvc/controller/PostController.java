@@ -78,6 +78,7 @@ public class PostController
      * @param response
      */
     @RequestMapping(value = "finduser2", method = RequestMethod.POST)
+    @ResponseBody
     public void findUserByName2(String username, String password, HttpServletRequest request,
                                 HttpServletResponse response)
     {
@@ -106,7 +107,17 @@ public class PostController
         User user = userService.findUserByName(name);
     }
 
+    @RequestMapping(value = "finduser4",method =RequestMethod.POST)
     public void findUserByName4(User user, HttpServletRequest request, HttpServletResponse response)
+    {
+        String name = request.getParameter("username");
+        String n = user.getUser_name();
+        User ur = userService.findUserByName(name);
+        sop(user);
+    }
+
+    @RequestMapping(value = "finduser4",method =RequestMethod.POST)
+    public void findUserByName5( @RequestBody User user, HttpServletRequest request, HttpServletResponse response)
     {
         String name = request.getParameter("username");
         String n = user.getUser_name();

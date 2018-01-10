@@ -18,7 +18,7 @@
     <import resource="applicationContext-dao.xml"></import>
 
     <!-- 1.开启SpringMVC注解模式 -->
-    <mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
         <!-- 指定http返回编码格式，不然返回ajax请求json会出现中文乱码 -->
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -31,7 +31,19 @@
                 </property>
             </bean>
         </mvc:message-converters>
+
     </mvc:annotation-driven>
+    <!-- 自定义参数绑定 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 转换器-->
+        <property name="converters">
+            <list>
+                <!-- 自定义日期格式转换，辅助Json转换为Bean对象-->
+                <bean class="com.zsm.springmvc.util.StringDateConverter"></bean>
+            </list>
+        </property>
+
+    </bean>
 
     <!-- 2.静态资源默认servlet配置 -->
     <!--加入对静态资源的处理：js,gif,png等,允许使用"/"做整体映射-->

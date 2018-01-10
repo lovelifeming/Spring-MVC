@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-
+<div>
+    <p>Test redirect request</p>
+</div>
 </body>
 </html>
