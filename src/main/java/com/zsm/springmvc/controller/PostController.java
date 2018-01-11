@@ -2,6 +2,7 @@ package com.zsm.springmvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.pojo.UserModel;
 import com.zsm.springmvc.service.IUserService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,13 @@ public class PostController
      * @throws IOException
      */
     @RequestMapping(value = "finduser", method = RequestMethod.POST)
-    public void findUserByName(HttpServletRequest request, HttpServletResponse response) throws IOException
+    public void findUserByName(HttpServletRequest request, HttpServletResponse response)
+        throws IOException
     {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String name = request.getParameter("username");
+        String password = request.getParameter("password");
         JSONObject json = BaseController.readValueFromRequest(request);
         sop(json);
         User user = userService.findUserByName(json.getString("username"));
@@ -47,7 +50,7 @@ public class PostController
     }
 
     /**
-     * 2.POST可以访问
+     * 2.POST访问,RequestBody
      *
      * @param params
      * @param response
@@ -107,21 +110,55 @@ public class PostController
         User user = userService.findUserByName(name);
     }
 
-    @RequestMapping(value = "finduser4",method =RequestMethod.POST)
-    public void findUserByName4(User user, HttpServletRequest request, HttpServletResponse response)
+    /**
+     * 5.
+     *
+     * @param user
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "finduser4", method = RequestMethod.POST)
+    @ResponseBody
+    public void findUserByName4(UserModel user, HttpServletRequest request, HttpServletResponse response)
     {
         String name = request.getParameter("username");
-        String n = user.getUser_name();
+        String n = user.getUsername();
+        String p = user.getPassword();
         User ur = userService.findUserByName(name);
         sop(user);
     }
 
-    @RequestMapping(value = "finduser4",method =RequestMethod.POST)
-    public void findUserByName5( @RequestBody User user, HttpServletRequest request, HttpServletResponse response)
+    /**
+     * 6.RequestBody获取Bean对象
+     *
+     * @param user
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "finduser5", method = RequestMethod.POST)
+    public void findUserByName5(@RequestBody User user, HttpServletRequest request, HttpServletResponse response)
     {
         String name = request.getParameter("username");
-        String n = user.getUser_name();
-        User ur = userService.findUserByName(name);
+        String name1 = user.getUser_name();
+        User user1 = userService.findUserByName(name);
+        sop(user);
+    }
+
+    /**
+     * 7.使用@ModelAttribute注解获取POST请求的FORM表单数据
+     *
+     * @param user
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "finduser6", method = RequestMethod.POST)
+    public void findUserByName6(@ModelAttribute("user") UserModel user, HttpServletRequest request,
+                                HttpServletResponse response)
+    {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        String name = request.getParameter("username");
+        User user1 = userService.findUserByName(name);
         sop(user);
     }
 

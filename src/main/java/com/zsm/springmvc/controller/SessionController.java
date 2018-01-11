@@ -1,5 +1,6 @@
 package com.zsm.springmvc.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.io.UnsupportedEncodingException;
  * @Date:Created in 2017/12/3 21:13.
  * @Modified By:
  */
+@Controller
 @RequestMapping("/session/")
 public class SessionController
 {

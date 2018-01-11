@@ -13,6 +13,9 @@
 <body>
 <div>
     <p>Test redirect request</p>
+    <P>${message}</P>
+    <P>${status}</P>
+    <P>${data}</P>
 </div>
 </body>
 </html>
