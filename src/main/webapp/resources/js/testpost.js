@@ -2,84 +2,50 @@
  * Created by zsm on 2017/11/15.
  */
 
-var commitRequest = function () {
+var url = "http://localhost:8080/post/finduser6";
+var param = {username: "admin", password: "123456"};
+
+function postTest() {
+    //0
+    // postRequest(url,JSON.stringify(param),"application/x-www-form-urlencoded",function () { });
+    //1,2，3，4
+    //postRequest(url,param,"application/x-www-form-urlencoded",function () { });
+    //5
+    // postRequest(url, param, "application/x-www-form-urlencoded", function () { });
+
+    //6
+    //postRequest(url, JSON.stringify(param), "application/json;charset=utf-8", function () { });
+}
+
+
+/**
+ * POST请求
+ * @param urlStr
+ * @param param
+ * @param contentType   "application/json;charset=utf-8"
+ * @param callBack  function
+ */
+function postRequest(urlStr, param, contentType, callBack) {
     $.ajax({
-        type: 'POST',
-        url: "/user/finduser",
+        type: "post",
+        url: urlStr,
         dataType: "json",
-        async: true,
-        data: JSON.stringify({"no": user_no_form.no.value}),
+        async: false,
+        //RequestBody 接受参数时需设置 application/json;charset=utf-8
+        contentType: contentType,
+        data: param,
         success: function (data) {
-            alert(data)
+            console.log(data);
+            var json = JSON.parse(data);
+            if (json.status == undefined || json.status == 0) {
+                return;
+            }
+            callBack(json);
+            return json;
         },
         error: function (data) {
-            alert(data)
+            console.log(data);
+            return data;
         }
     })
-};
-var commitRequest1 = function () {
-    $.ajax({
-        type: 'POST',
-        url: "/user/finduser1",
-        dataType: "son",
-        async: true,
-        data: JSON.stringify({"username": document.getElementById("user_name").value}),
-        success: function (data) {
-            alert(data)
-        },
-        error: function (data) {
-            alert(data)
-        }
-    });
-};
-var commitRequest2 = function () {
-    $.ajax({
-        type: 'POST',
-        url: "/user/finduser2",
-        dataType: "json",
-        async: true,
-        data: JSON.stringify({
-            "username": user_from1.name.value,
-            "password": user_from1.pwd.value
-        }),
-        success: function (data) {
-            alert(data)
-        },
-        error: function (data) {
-            alert(data)
-        }
-    })
-};
-var commitRequest3 = function () {
-    $.ajax({
-        type: 'get',
-        url: "/user/finduser3/" + document.getElementById("user_name2").value,
-        dataType: "json",
-        async: true,
-        //data: {"username": document.getElementById("user_name2").value},
-        success: function (data) {
-            alert(data)
-        },
-        error: function (data) {
-            alert(data)
-        }
-    })
-};
-var commitRequest4 = function () {
-    $.ajax({
-        type: 'POST',
-        url: "/user/finduser4",
-        context: "json",
-        async: true,
-        data: {
-            "username": document.getElementById("user_name3").value,
-            "pwd": document.getElementById("user_pwd3").value
-        },
-        success: function (data) {
-            alert(data);
-        },
-        error: function (data) {
-            alert(data);
-        }
-    });
-};
+}

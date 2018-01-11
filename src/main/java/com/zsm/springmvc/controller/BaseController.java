@@ -2,13 +2,13 @@ package com.zsm.springmvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.nashorn.internal.parser.JSONParser;
 import net.sf.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
 
 
 /**
@@ -52,13 +52,14 @@ public class BaseController
      */
     public static JSONObject readValueFromRequest(HttpServletRequest request)
     {
-        StringBuilder sb = new StringBuilder();
-        Enumeration en = request.getParameterNames();
-        while (en.hasMoreElements())
+        JSONObject json = new JSONObject();
+        Map<String, String[]> map = request.getParameterMap();
+        Iterator<Map.Entry<String, String[]>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext())
         {
-            sb.append(en.nextElement());
+            Map.Entry<String, String[]> m = iterator.next();
+            json.put(m.getKey(), m.getValue());
         }
-        JSONObject json = JSONObject.fromObject(sb.toString());
         return json;
     }
 }

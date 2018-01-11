@@ -16,6 +16,10 @@ import java.net.URLDecoder;
 
 
 /**
+ * Post请求总共分为两种方式传输数据：
+ * 一种是以表单From的方式提交数据；contentType:application/x-www-form-urlencoded
+ * 一种是请求体RequestBody的方式提交数据；application/json;charset=utf-8
+ *
  * @Author: zsm.
  * @Description:
  * @Date:Created in 2017/11/5 23:26.
@@ -29,7 +33,8 @@ public class PostController
     private IUserService userService;
 
     /**
-     * 1.通过HttpServletRequest接收
+     * 1.通过HttpServletRequest接收，请求头设置为contentType:application/x-www-form-urlencoded
+     * postRequest(url,JSON.stringify(param),"application/x-www-form-urlencoded",function () { });
      *
      * @param request
      * @param response
@@ -37,12 +42,7 @@ public class PostController
      */
     @RequestMapping(value = "finduser", method = RequestMethod.POST)
     public void findUserByName(HttpServletRequest request, HttpServletResponse response)
-        throws IOException
     {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String name = request.getParameter("username");
-        String password = request.getParameter("password");
         JSONObject json = BaseController.readValueFromRequest(request);
         sop(json);
         User user = userService.findUserByName(json.getString("username"));
@@ -50,30 +50,28 @@ public class PostController
     }
 
     /**
-     * 2.POST访问,RequestBody
+     * 2.POST访问,HttpServletRequest   getParameter,application/x-www-form-urlencoded,数据以表单提交，不能转为JSON格式
+     * postRequest(url,param,"application/x-www-form-urlencoded",function () { });
      *
-     * @param params
+     * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "finduser1", method = RequestMethod.POST)
-    public void findUserByName1(@RequestBody String params, HttpServletRequest request, HttpServletResponse response)
+    public void findUserByName1(HttpServletRequest request, HttpServletResponse response)
         throws IOException
     {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String name1 = request.getParameter("username");
-        String param = URLDecoder.decode(params, "utf-8");
-        sop(param);
-        String name = JSONObject.fromObject(param).getString("username");
-        User user = userService.findUserByName(name);
-        //设置响应消息头编码
-        response.setContentType("text/html;charset=UTF-8");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        sop(username);
+        sop(password);
+        User user = userService.findUserByName(username);
         response.getWriter().print(JSON.toJSONString(user));
     }
 
     /**
-     * 3.post方式提交,形参名称必须一致
+     * 3.post方式提交,形参名称必须一致，application/x-www-form-urlencoded,数据以表单提交，不能转为JSON格式
+     * postRequest(url,param,"application/x-www-form-urlencoded",function () { });
      *
      * @param username
      * @param password
@@ -94,24 +92,26 @@ public class PostController
     }
 
     /**
-     * 4.用注解@RequestParam绑定请求参数到方法入参
+     * 4.用注解@RequestParam绑定请求参数到方法入参,application/x-www-form-urlencoded,数据以表单提交，不能转为JSON格式
+     * postRequest(url,param,"application/x-www-form-urlencoded",function () { });
      *
      * @param username
      * @param request
      * @param response
      */
     @RequestMapping(value = "finduser3", method = RequestMethod.POST)
-    public void findUserByName3(@RequestParam("username") String username, @RequestParam("pwd") String pwd,
+    public void findUserByName3(@RequestParam("username") String username, @RequestParam("password") String password,
                                 HttpServletRequest request, HttpServletResponse response)
     {
         String name = request.getParameter("username");
         System.out.println("username is:" + username);
-        System.out.println("pwd is:" + pwd);
+        System.out.println("pwd is:" + password);
         User user = userService.findUserByName(name);
     }
 
     /**
-     * 5.
+     * 5.用对象映射接收参数，application/x-www-form-urlencoded,数据以表单提交，不能转为JSON格式
+     * postRequest(url,param,"application/x-www-form-urlencoded",function () { });
      *
      * @param user
      * @param request
@@ -129,30 +129,15 @@ public class PostController
     }
 
     /**
-     * 6.RequestBody获取Bean对象
+     * 6.使用@ModelAttribute注解获取POST请求的FORM表单数据，数据以表单提交，不能转为JSON格式
+     * postRequest(url, param, "application/x-www-form-urlencoded", function () { });
      *
      * @param user
      * @param request
      * @param response
      */
     @RequestMapping(value = "finduser5", method = RequestMethod.POST)
-    public void findUserByName5(@RequestBody User user, HttpServletRequest request, HttpServletResponse response)
-    {
-        String name = request.getParameter("username");
-        String name1 = user.getUser_name();
-        User user1 = userService.findUserByName(name);
-        sop(user);
-    }
-
-    /**
-     * 7.使用@ModelAttribute注解获取POST请求的FORM表单数据
-     *
-     * @param user
-     * @param request
-     * @param response
-     */
-    @RequestMapping(value = "finduser6", method = RequestMethod.POST)
-    public void findUserByName6(@ModelAttribute("user") UserModel user, HttpServletRequest request,
+    public void findUserByName5(@ModelAttribute("user") UserModel user, HttpServletRequest request,
                                 HttpServletResponse response)
     {
         String username = user.getUsername();
@@ -160,6 +145,22 @@ public class PostController
         String name = request.getParameter("username");
         User user1 = userService.findUserByName(name);
         sop(user);
+    }
+
+    /**
+     * 7.RequestBody获取Bean对象,application/json;charset=utf-8，数据必须转换为JSON格式
+     * postRequest(url,JSON.stringify(param),"application/json;charset=utf-8",function () { });
+     *
+     * @param user
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "finduser6", method = RequestMethod.POST)
+    public void findUserByName6(@RequestBody UserModel user, HttpServletRequest request, HttpServletResponse response)
+    {
+        String name = user.getUsername();
+        User user1 = userService.findUserByName(name);
+        sop(user.getUsername() + user.getPassword());
     }
 
     public static void sop(Object obj)
