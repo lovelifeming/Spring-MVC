@@ -25,7 +25,7 @@ public class BaseController
      * @param response
      * @param object
      */
-    public static void wirteValueToResponse(HttpServletResponse response, Object object)
+    public static void writeValueToResponse(HttpServletResponse response, Object object)
     {
         try
         {

@@ -74,12 +74,12 @@
     </tx:advice>
 
     <!-- 7.配置AOP事务 -->
-   <!-- <aop:config>
-        &lt;!&ndash; 配置事务切点 &ndash;&gt;
+    <aop:config>
+        <!-- 配置事务切点 -->
         <aop:pointcut expression="execution(* com.zsm.springmvc.service.*ServiceImpl.*(..))" id="appPoint"/>
-        &lt;!&ndash; 结合事务切点与切面 &ndash;&gt;
+        <!-- 结合事务切点与切面 -->
         <aop:advisor advice-ref="appAdvice" pointcut-ref="appPoint"/>
-    </aop:config>-->
+    </aop:config>
 
     <!-- 8.配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>

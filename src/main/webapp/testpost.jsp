@@ -9,46 +9,78 @@
 <html>
 <head>
     <title>Test Post</title>
-    <script type="text/javascript" src="resources/js/testpost.js"></script>
+    <%@include file="WEB-INF/jsp/common/staticresources.jsp" %>
 </head>
 <body>
-<div>
-    <a href="WEB-INF/view/test_request.jsp">Test Request</a>
-    <a href="WEB-INF/view/test_upload.jsp">Test Upload</a>
-</div>
-<div>
-    <form name="user_no_form">
-        <input name="no" value="" type="text" id="user_no">
-        <button type="button" onclick="commitRequest()">Commit</button>
-    </form>
-</div>
-<div>
-    <form>
-        <input name="name" value="" type="text" id="user_name">
-        <%--<input name="pwd" value="" type="text">--%>
-        <button type="button" onclick="commitRequest1()">Commit</button>
-    </form>
-</div>
-<div>
-    <form name="user_from1">
-        <input name="name" value="" type="text" id="user_name1">
-        <input name="pwd" value="" type="text" id="user_pwd1">
-        <button type="button" onclick="commitRequest2()">Commit</button>
-    </form>
-</div>
-<div>
-    <form>
-        <input name="name" value="" type="text" id="user_name2">
-        <%--<input name="pwd" value="" type="text">--%>
-        <button type="button" onclick="commitRequest3()">Commit</button>
-    </form>
-</div>
-<div>
-    <form>
-        <input name="name" value="" type="text" id="user_name3">
-        <input name="pwd" value="" type="text" id="user_pwd3">
-        <button type="button" onclick="commitRequest4()">Commit</button>
-    </form>
+<div style="margin-left: 45%;margin-top: 30px">
+    <div style="height: 40px">
+        <input type="button" value="TestPost" onclick="postTest('')">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost1" onclick="postTest(1)">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost2" onclick="postTest(2)">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost3" onclick="postTest(3)">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost4" onclick="postTest(4)">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost5" onclick="postTest(5)">
+    </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost6" onclick="postTest1(6)">
+    </div>
 </div>
 </body>
+<script type="text/javascript">
+    var url = "http://localhost:8080/post/finduser";
+    var params = {username: "admin", password: "123456"};
+
+    function postTest(param) {
+        postRequest(url + param, params, "application/x-www-form-urlencoded", function () {
+        });
+    }
+
+    function postTest1(param) {
+        //6
+        postRequest(url + param, JSON.stringify(params), "application/json;charset=utf-8", function () {
+        });
+    }
+
+    /**
+     * POST请求
+     * @param urlStr
+     * @param param
+     * @param contentType   "application/json;charset=utf-8"
+     * @param callBack  function
+     */
+    function postRequest(urlStr, param, contentType, callBack) {
+        $.ajax({
+            type: "post",
+            url: urlStr,
+            dataType: "json",
+            async: false,
+            //RequestBody 接受参数时需设置 application/json;charset=utf-8
+            contentType: contentType,
+            data: param,
+            success: function (data) {
+                console.log(data);
+                var json = JSON.parse(data);
+                if (json.status == undefined || json.status == 0) {
+                    return;
+                }
+                callBack(json);
+                return json;
+            },
+            error: function (data) {
+                console.log(data);
+                return data;
+            }
+        })
+    }
+</script>
 </html>

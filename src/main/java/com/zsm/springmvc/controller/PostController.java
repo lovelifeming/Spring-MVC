@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLDecoder;
 
 
 /**
@@ -46,7 +45,7 @@ public class PostController
         JSONObject json = BaseController.readValueFromRequest(request);
         sop(json);
         User user = userService.findUserByName(json.getString("username"));
-        BaseController.wirteValueToResponse(response, user);
+        BaseController.writeValueToResponse(response, user);
     }
 
     /**
