@@ -162,6 +162,21 @@ public class PostController
         sop(user.getUsername() + user.getPassword());
     }
 
+    /**
+     * 8.Restful风格POST请求，application/json;charset=utf-8，数据必须转换为JSON格式
+     * postRequest(url +"7/admin/123456", JSON.stringify(params), "application/json;charset=utf-8", function () { });
+     *
+     * @param username
+     * @param password
+     */
+    @RequestMapping(value = "finduser7/{username}/{password}", method = RequestMethod.POST)
+    public void findUserByName7(@PathVariable("username") String username, @PathVariable("password") String password,
+                                HttpServletRequest request)
+    {
+        sop(username);
+        sop(password);
+    }
+
     public static void sop(Object obj)
     {
         System.out.println(obj);

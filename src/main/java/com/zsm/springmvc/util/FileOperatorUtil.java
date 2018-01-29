@@ -12,6 +12,22 @@ import java.net.URISyntaxException;
 public class FileOperatorUtil
 {
     /**
+     * 获取系统文件分隔符
+     */
+    public static final String FILE_SEPARATOR = System.getProperty("file.separator");
+
+    /**
+     * 获取真实路径，用系统分隔符替换
+     *
+     * @param path
+     * @return
+     */
+    public static String getRealFilePathBySystem(String path)
+    {
+        return path.replace("/", FILE_SEPARATOR).replace("\\", FILE_SEPARATOR);
+    }
+
+    /**
      * 获取FileOperatorUtils文件相对的根路径
      *
      * @return

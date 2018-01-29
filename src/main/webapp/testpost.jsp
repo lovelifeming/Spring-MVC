@@ -12,7 +12,7 @@
     <%@include file="WEB-INF/jsp/common/staticresources.jsp" %>
 </head>
 <body>
-<div style="margin-left: 45%;margin-top: 30px">
+<div style="margin-left: 30%;margin-top: 30px">
     <div style="height: 40px">
         <input type="button" value="TestPost" onclick="postTest('')">
     </div>
@@ -34,10 +34,13 @@
     <div style="height: 40px">
         <input type="button" value="TestPost6" onclick="postTest1(6)">
     </div>
+    <div style="height: 40px">
+        <input type="button" value="TestPost7" onclick="postTest2()">
+    </div>
 </div>
 </body>
 <script type="text/javascript">
-    var url = "http://localhost:8080/post/finduser";
+    var url = "${pageContext.request.contextPath}/post/finduser";
     var params = {username: "admin", password: "123456"};
 
     function postTest(param) {
@@ -46,8 +49,11 @@
     }
 
     function postTest1(param) {
-        //6
         postRequest(url + param, JSON.stringify(params), "application/json;charset=utf-8", function () {
+        });
+    }
+    function postTest2() {
+        postRequest(url +"7/admin/123456", JSON.stringify(params), "application/json;charset=utf-8", function () {
         });
     }
 

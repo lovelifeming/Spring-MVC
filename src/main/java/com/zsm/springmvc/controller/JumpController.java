@@ -38,4 +38,10 @@ public class JumpController
         modelAndView.setViewName("testredirect");
         return modelAndView;
     }
+
+    @RequestMapping("download")
+    public String jumpToDownLoad()
+    {
+        return "testdownload";
+    }
 }
