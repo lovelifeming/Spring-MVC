@@ -56,7 +56,8 @@
         <form method="POST" action="/upload/file5" enctype="multipart/form-data">
             选择一个文件:
             <input type="file" name="upLoadFile"/>
-            <input type="text" name="number"/>
+            <input type="file" name="upLoadFile"/>
+            <input type="file" name="upLoadFile"/>
             <input type="submit" value="上传"/>
         </form>
     </div>

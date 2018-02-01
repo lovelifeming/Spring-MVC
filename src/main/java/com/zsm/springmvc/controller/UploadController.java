@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -163,10 +164,37 @@ public class UploadController
         }
     }
 
-    @RequestMapping("file5")
-    public void uploadFile5(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(value = "file5", produces = "application/json; charset=utf-8")
+    public ModelAndView uploadFile5(@RequestParam("upLoadFile") MultipartFile[] multipartFiles,
+                                    HttpServletRequest request, HttpServletResponse response)
+        throws IOException
     {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("result");
+        if (multipartFiles != null && multipartFiles.length > 0)
+        {
+            String filePath = request.getServletContext().getRealPath("/") + UPLOAD_FILE_PATH;
+            File file = new File(filePath);
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
 
+            for (MultipartFile m : multipartFiles)
+            {
+                String fileName = filePath + FileOperatorUtil.FILE_SEPARATOR + m.getOriginalFilename();
+                m.transferTo(new File(fileName));
+            }
+            modelAndView.addObject("message", "upload file success");
+            modelAndView.addObject("status", "true");
+        }
+        else
+        {
+            modelAndView.addObject("message", "upload file fail");
+            modelAndView.addObject("status", "false");
+        }
+
+        return modelAndView;
     }
 
     @RequestMapping("file6")
