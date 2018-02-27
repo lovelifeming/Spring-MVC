@@ -39,8 +39,8 @@ public class GetController
         System.out.println("test request");
         //跳转到testredirect.jsp页面
         //return "redirect:testredirect";
-        //转发到能够匹配 /testredirect 的 controller 上
-        return "forward:/jump/testredirect";
+        //转发到能够匹配 /redirect 的 controller 上
+        return "forward:/jump/redirect";
     }
 
     /**
@@ -54,8 +54,8 @@ public class GetController
     {
         System.out.println("username " + username);
         System.out.println("password " + password);
-        //重定向到到 jumpToTestRedirect方法  testredirect1
-        return new ModelAndView("redirect:/jump/testredirect");
+        //重定向到到 jumpToTestRedirect方法  redirectandparam
+        return new ModelAndView("redirect:/jump/redirectandparam");
     }
 
     /**
@@ -67,9 +67,9 @@ public class GetController
     @RequestMapping(value = "finduser1/{username}/{password}", method = RequestMethod.GET)
     public ModelAndView findUserByName1(@PathVariable String username, @PathVariable String password)
     {
-        // 重定向到到  jumpToTestRedirectAndParam方法  testredirect1
+        // 重定向到到  jumpToTestRedirectAndParam方法  redirectandparam
         ModelAndView modelAndView = new ModelAndView(
-            "redirect:/jump/testredirect1?message=" + username + "&status=" + password + "&data=finduser1跳转成功");
+            "redirect:/jump/redirectandparam?message=" + username + "&status=" + password + "&data=finduser1跳转成功");
         System.out.println("username " + username);
         System.out.println("password " + password);
         return modelAndView;
@@ -92,7 +92,7 @@ public class GetController
         redirectAttributes.addAttribute("message", username);
         redirectAttributes.addAttribute("status", password);
         redirectAttributes.addAttribute("data", "finduser2");
-        return "redirect:/jump/testredirect1";
+        return "redirect:/jump/redirectandparam";
     }
 
     /**
