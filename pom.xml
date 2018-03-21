@@ -399,8 +399,11 @@
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.js</include>
-                    <include>**/*.*</include>
+                    <include>**/*.conf</include>
                 </includes>
+                <excludes>
+                    <exclude>**/*.jar</exclude>
+                </excludes>
                 <filtering>true</filtering>
             </resource>
         </resources>
