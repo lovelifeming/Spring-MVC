@@ -98,4 +98,16 @@
     <!-- 8.配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!--redis 配置-->
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:properties/redis.properties</value>
+            </list>
+        </property>
+    </bean>-->
+    <import resource="classpath:spring/spring-redis.xml"/>
+
 </beans>

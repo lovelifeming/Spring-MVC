@@ -3,7 +3,7 @@ package com.zsm.springmvc.controller;
 import com.alibaba.fastjson.JSON;
 import com.zsm.springmvc.mdel.User;
 import com.zsm.springmvc.pojo.UserModel;
-import com.zsm.springmvc.service.IUserService;
+import com.zsm.springmvc.service.UserService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ import java.io.IOException;
 public class PostController
 {
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     /**
      * 1.通过HttpServletRequest接收，请求头设置为contentType:application/x-www-form-urlencoded

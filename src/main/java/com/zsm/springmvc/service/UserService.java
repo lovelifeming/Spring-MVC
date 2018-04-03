@@ -10,7 +10,7 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
  * @Date:Created in 2017/11/5 23:41.
  * @Modified By:
  */
-public interface IUserService
+public interface UserService
 {
     User findUserByNo(int no);
 

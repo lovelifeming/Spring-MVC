@@ -2,7 +2,7 @@ package com.zsm.springmvc.service.impl;
 
 import com.zsm.springmvc.dao.IUserDao;
 import com.zsm.springmvc.mdel.User;
-import com.zsm.springmvc.service.IUserService;
+import com.zsm.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Modified By:
  */
 @Service
-public class UserServiceImpl implements IUserService
+public class UserServiceImpl implements UserService
 {
     @Autowired
     private IUserDao userDao;

@@ -1,7 +1,7 @@
 package com.zsm.springmvc.service.impl;
 
 import com.zsm.springmvc.mdel.User;
-import com.zsm.springmvc.service.IUserService;
+import com.zsm.springmvc.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UserServiceImplTest
 {
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Test
     public void findUserByNo() throws Exception
