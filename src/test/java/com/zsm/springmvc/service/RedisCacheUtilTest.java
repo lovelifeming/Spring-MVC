@@ -9,8 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-
-
 /**
  * @Author: zengsm.
  * @Description:
@@ -29,8 +27,11 @@ public class RedisCacheUtilTest
     public void getCacheObject()
         throws Exception
     {
-        User user = (User)redisCacheUtil.getCacheObject("admin");
-        Assert.assertEquals("001", user.getUser_no());
+        User user = new User();
+        user.setUser_no("001");
+        redisCacheUtil.setCacheObject("admin", user);
+        User user1 = (User)redisCacheUtil.getCacheObject("admin");
+        Assert.assertEquals("001", user1.getUser_no());
     }
 
 }

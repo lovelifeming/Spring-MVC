@@ -1,5 +1,6 @@
 package com.zsm.springmvc.mdel;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -9,7 +10,7 @@ import java.util.Date;
  * @Date:Created in 2017/11/5 23:29.
  * @Modified By:
  */
-public class User
+public class User implements Serializable
 {
     private int id;
 
