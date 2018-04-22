@@ -205,39 +205,49 @@ public class UploadController
         return modelAndView;
     }
 
+    /**
+     * base64 字符编码 文件以字符形式上传，主要用于小文件图片LOGO上传
+     *
+     * @param base64
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("file6")
     @ResponseBody
     public String uploadFile6(String base64, HttpServletRequest request, HttpServletResponse response)
     {
-        //去掉base64数据头部data:image/png;base64,和尾部的” " “
+        //去掉base64数据头部 \"data:image/png;base64, 和尾部的 \"
         String[] arr = base64.split(",");
-        base64 = arr[1];
-        String[] split = base64.split("\"");
-        base64 = split[0];
+        String suffix = arr[0].substring(arr[0].indexOf("/") + 1, arr[0].indexOf(";"));
+        String str = arr[1];
+        String[] split = str.split("\"");
+        String context = split[0];
         //图片保存到本地
         String path = this.getClass().getResource("/").getPath() + "images";
-        JSONObject result=new JSONObject();
-        String name = String.valueOf(UUID.randomUUID());
+        JSONObject result = new JSONObject();
+        String name = String.valueOf(UUID.randomUUID()) + FileOperatorUtil.FILE_POINT + suffix;
         try
         {
             //将图片插入数据库
-            //userService.base64test(base64);
+            //userService.base64test(context);
             File file = new File(path);
             if (!file.exists())
             {
                 file.mkdirs();
             }
-            path = path + name;
-            decoderBase64File(base64, path);
+            path = path + FileOperatorUtil.FILE_SEPARATOR + name;
+            decoderBase64File(context, path);
         }
         catch (Exception e)
         {
             LOGGER.info(e.getMessage());
             e.printStackTrace();
-            result.put("success",false);
+            result.put("success", false);
             return result.toString();
         }
-        result.put("success",true);
+        result.put("success", true);
+        result.put("data", name);
         return result.toString();
     }
 

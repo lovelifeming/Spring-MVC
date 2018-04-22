@@ -63,17 +63,13 @@
         </form>
     </div>
     <div>
-        <form method="POST" action="/upload/file6" enctype="multipart/form-data">
-            选择一个文件:
-            <input type="file" name="upLoadFile"/>
-            <input type="text" name="number"/>
-            <input type="submit" value="上传"/>
-        </form>
-
-        <input type="file" onchange="selectImage(this);"/>
-        <input type="button" onclick="uploadImage();" value="提交"/>
+        <input type="file" onchange="selectFile(this);"/>
+        <input type="button" onclick="uploadFile();" value="提交"/>
     </div>
-    <input name="attach" class=" box2" type="file" onchange="checkFileSize(this)" value="检查文件大小"/>检查文件大小
+    <hr/>
+    <div>
+        <input name="attach" class=" box2" type="file" onchange="checkFileSize(this)" value="检查文件大小"/>检查文件大小
+    </div>
     <div>
         <xmp>注意： 看看表单
             <from>中是否包含 enctype="multipart/form-data" enctype="multipart/form-data" 会让数据以二进制传输
@@ -110,28 +106,26 @@
         return true;
     }
 
-    var image = '';
+    var fileContext = '';
 
-    function selectImage(file) {
-        debugger;
+    function selectFile(file) {
         if (!file.files || !file.files[0]) {
             return;
         }
         var reader = new FileReader();
         reader.onload = function (evt) {
             document.getElementById('image').src = evt.target.result;
-            image = evt.target.result;
+            fileContext = evt.target.result;
         }
         reader.readAsDataURL(file.files[0]);
     }
 
-    function uploadImage() {
-        debugger;
-        image = JSON.stringify(image)
+    function uploadFile() {
+        fileContext = JSON.stringify(fileContext)
         $.ajax({
             type: 'POST',
             url: '/upload/file6',
-            data: {base64: image},
+            data: {base64: fileContext},
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -143,7 +137,7 @@
                 }
             },
             error: function (err) {
-                alert('网络故障');
+                alert('请求失败：' + err);
             }
         });
     }

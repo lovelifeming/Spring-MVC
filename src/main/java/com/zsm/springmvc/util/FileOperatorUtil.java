@@ -17,6 +17,11 @@ public class FileOperatorUtil
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
     /**
+     * . 文件扩展名分隔符
+     */
+    public static final String FILE_POINT = ".";
+
+    /**
      * 获取真实路径，用系统分隔符替换
      *
      * @param path
