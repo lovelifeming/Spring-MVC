@@ -1,17 +1,23 @@
 package com.zsm.springmvc.controller;
 
 import com.zsm.springmvc.util.FileOperatorUtil;
+import net.sf.json.JSONObject;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -28,6 +34,8 @@ public class UploadController
 {
     private static final String UPLOAD_FILE_PATH =
         "WEB-INF" + FileOperatorUtil.FILE_SEPARATOR + "upload" + FileOperatorUtil.FILE_SEPARATOR;
+
+    private static final Logger LOGGER = LogManager.getLogger(UploadController.class);
 
     /**
      * 单文件上传将表单中input标签中的name="upLoadFile"属性在控制器中以MultipartFile对象上传
@@ -198,8 +206,60 @@ public class UploadController
     }
 
     @RequestMapping("file6")
-    public void uploadFile6(HttpServletRequest request, HttpServletResponse response)
+    @ResponseBody
+    public String uploadFile6(String base64, HttpServletRequest request, HttpServletResponse response)
     {
+        //去掉base64数据头部data:image/png;base64,和尾部的” " “
+        String[] arr = base64.split(",");
+        base64 = arr[1];
+        String[] split = base64.split("\"");
+        base64 = split[0];
+        //图片保存到本地
+        String path = this.getClass().getResource("/").getPath() + "images";
+        JSONObject result=new JSONObject();
+        String name = String.valueOf(UUID.randomUUID());
+        try
+        {
+            //将图片插入数据库
+            //userService.base64test(base64);
+            File file = new File(path);
+            if (!file.exists())
+            {
+                file.mkdirs();
+            }
+            path = path + name;
+            decoderBase64File(base64, path);
+        }
+        catch (Exception e)
+        {
+            LOGGER.info(e.getMessage());
+            e.printStackTrace();
+            result.put("success",false);
+            return result.toString();
+        }
+        result.put("success",true);
+        return result.toString();
+    }
 
+    /**
+     * 将base64字符解码保存文件
+     *
+     * @param base64Code
+     * @param targetPath
+     */
+
+    public static void decoderBase64File(String base64Code, String targetPath)
+    {
+        byte[] buffer;
+        try (FileOutputStream out = new FileOutputStream(targetPath))
+        {
+            buffer = new BASE64Decoder().decodeBuffer(base64Code);
+            out.write(buffer);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            LOGGER.info(e.getMessage());
+        }
     }
 }

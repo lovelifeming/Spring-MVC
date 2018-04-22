@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="./resources/js/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div style="margin-left: 20%;margin-top: 30px">
@@ -68,12 +69,16 @@
             <input type="text" name="number"/>
             <input type="submit" value="上传"/>
         </form>
+
+        <input type="file" onchange="selectImage(this);"/>
+        <input type="button" onclick="uploadImage();" value="提交"/>
     </div>
-    <input name="attach" class=" box2" type="file" onchange="checkFileSize(this)"/>
+    <input name="attach" class=" box2" type="file" onchange="checkFileSize(this)" value="检查文件大小"/>检查文件大小
     <div>
         <xmp>注意： 看看表单
             <from>中是否包含 enctype="multipart/form-data" enctype="multipart/form-data" 会让数据以二进制传输
         </xmp>
+        <img id="image" src=""/>
     </div>
 </div>
 </body>
@@ -103,6 +108,44 @@
             return false;
         }
         return true;
+    }
+
+    var image = '';
+
+    function selectImage(file) {
+        debugger;
+        if (!file.files || !file.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            document.getElementById('image').src = evt.target.result;
+            image = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+
+    function uploadImage() {
+        debugger;
+        image = JSON.stringify(image)
+        $.ajax({
+            type: 'POST',
+            url: '/upload/file6',
+            data: {base64: image},
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                alert(data.success)
+                if (data.success) {
+                    alert('上传成功');
+                } else {
+                    alert('上传失败');
+                }
+            },
+            error: function (err) {
+                alert('网络故障');
+            }
+        });
     }
 </script>
 </html>
