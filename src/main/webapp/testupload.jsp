@@ -106,7 +106,7 @@
         return true;
     }
 
-    var fileContext = '';
+    var fileContent = '';
 
     function selectFile(file) {
         if (!file.files || !file.files[0]) {
@@ -115,29 +115,29 @@
         var reader = new FileReader();
         reader.onload = function (evt) {
             document.getElementById('image').src = evt.target.result;
-            fileContext = evt.target.result;
+            fileContent = evt.target.result;
         }
         reader.readAsDataURL(file.files[0]);
     }
 
     function uploadFile() {
-        fileContext = JSON.stringify(fileContext)
+        fileContent = JSON.stringify(fileContent);
         $.ajax({
             type: 'POST',
             url: '/upload/file6',
-            data: {base64: fileContext},
+            data: {base64: fileContent},
             async: false,
             dataType: 'json',
             success: function (data) {
-                alert(data.success)
+                alert(data.success);
                 if (data.success) {
-                    alert('上传成功');
+                    alert('上传成功:' + data);
                 } else {
-                    alert('上传失败');
+                    alert('上传失败:' + data);
                 }
             },
             error: function (err) {
-                alert('请求失败：' + err);
+                alert('请求失败:' + err);
             }
         });
     }

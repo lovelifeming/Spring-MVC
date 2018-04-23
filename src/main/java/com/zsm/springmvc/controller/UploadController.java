@@ -206,7 +206,7 @@ public class UploadController
     }
 
     /**
-     * base64 字符编码 文件以字符形式上传，主要用于小文件图片LOGO上传
+     * base64 字符编码 文件以字符形式上传，主要用于小文件图片LOGO上传,上传文件大小有限制
      *
      * @param base64
      * @param request
@@ -222,7 +222,7 @@ public class UploadController
         String suffix = arr[0].substring(arr[0].indexOf("/") + 1, arr[0].indexOf(";"));
         String str = arr[1];
         String[] split = str.split("\"");
-        String context = split[0];
+        String content = split[0];
         //图片保存到本地
         String path = this.getClass().getResource("/").getPath() + "images";
         JSONObject result = new JSONObject();
@@ -237,7 +237,7 @@ public class UploadController
                 file.mkdirs();
             }
             path = path + FileOperatorUtil.FILE_SEPARATOR + name;
-            decoderBase64File(context, path);
+            decoderBase64File(content, path);
         }
         catch (Exception e)
         {
