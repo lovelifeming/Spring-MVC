@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,19 +19,18 @@ import java.util.List;
 
 
 /**
- * 控制层继承HttpServlet，自定义实现doGet、doPost,实现文件上传
+ * 控制层继承HttpServlet，自定义实现doGet、doPost,实现文件上传.在web.xml里面配置servlet和servlet-mapping映射关系
  *
  * @Author: zengsm.
  * @Description:
  * @Date:Created in 2018/5/3.
  * @Modified By:
  */
-@WebServlet("/servlet/")
-public class HttpServletExt extends HttpServlet
+public class MyHttpServlet extends HttpServlet
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HttpServletExt.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyHttpServlet.class);
 
-    public HttpServletExt()
+    public MyHttpServlet()
     {
         super();
     }
