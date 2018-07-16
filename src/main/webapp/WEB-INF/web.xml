@@ -34,6 +34,7 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring/applicationContext.xml</param-value>
         </init-param>
+        <!--servlet启动时加载，默认懒加载-->
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>
     </servlet>

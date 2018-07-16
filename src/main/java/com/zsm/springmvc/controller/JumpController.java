@@ -3,6 +3,7 @@ package com.zsm.springmvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -68,6 +69,21 @@ public class JumpController
     public void jumpToSendRedirect(HttpServletResponse response)
         throws IOException
     {
+        response.sendRedirect("http://www.baidu.com");
+    }
+
+    /**
+     * 重定向传值，通过Flash属性RedirectAttributes，并必须配置 <annotation-driven/>
+     *
+     * @param response
+     * @param redirectAttributes 重定向参数传递
+     * @throws IOException
+     */
+    @RequestMapping("sendredirect")
+    public void redirectAttributes(HttpServletResponse response, RedirectAttributes redirectAttributes)
+        throws IOException
+    {
+        redirectAttributes.addFlashAttribute("param", "this had a redirect!");
         response.sendRedirect("http://www.baidu.com");
     }
 }
