@@ -1,6 +1,7 @@
 package com.zsm.springmvc.controller;
 
 import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.mdel.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 
 /**
@@ -30,6 +33,25 @@ public class ParameterController
      */
     @RequestMapping("bindingresult")
     public String bindingResult(@ModelAttribute User user, BindingResult bindingResult, Model model)
+    {
+        if (bindingResult.hasErrors())
+        {
+            LOGGER.error(bindingResult.getFieldError().toString());
+            return "error";
+        }
+        return user.toString();
+    }
+
+    /**
+     * 采用注解方式验证字段
+     *
+     * @param user
+     * @param bindingResult
+     * @param model
+     * @return
+     */
+    @RequestMapping("validator")
+    public String validator(@Valid @ModelAttribute UserValidator user, BindingResult bindingResult, Model model)
     {
         if (bindingResult.hasErrors())
         {
