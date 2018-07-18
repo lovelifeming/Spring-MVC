@@ -108,4 +108,18 @@ public class User implements Serializable
         this.updatetime = updatetime;
     }
 
+    @Override
+    public String toString()
+    {
+        return "User{" +
+               "id=" + id +
+               ", user_no='" + user_no + '\'' +
+               ", user_name='" + user_name + '\'' +
+               ", user_sex='" + user_sex + '\'' +
+               ", user_birthday=" + user_birthday +
+               ", user_class='" + user_class + '\'' +
+               ", createtime=" + createtime +
+               ", updatetime=" + updatetime +
+               '}';
+    }
 }
