@@ -79,11 +79,19 @@ public class JumpController
      * @param redirectAttributes 重定向参数传递
      * @throws IOException
      */
-    @RequestMapping("sendredirect")
+    @RequestMapping("redirectAttributes")
     public void redirectAttributes(HttpServletResponse response, RedirectAttributes redirectAttributes)
         throws IOException
     {
         redirectAttributes.addFlashAttribute("param", "this had a redirect!");
         response.sendRedirect("http://www.baidu.com");
+    }
+
+    @RequestMapping("i18n")
+    public String i18ntest(HttpServletResponse response, RedirectAttributes redirectAttributes)
+        throws IOException
+    {
+//        response.sendRedirect("i18test");
+        return "i18ntest";
     }
 }

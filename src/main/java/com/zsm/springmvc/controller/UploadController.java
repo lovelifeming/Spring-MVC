@@ -30,6 +30,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/upload/")
+@SuppressWarnings("all")
 public class UploadController
 {
     private static final String UPLOAD_FILE_PATH =

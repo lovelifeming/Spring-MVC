@@ -15,6 +15,7 @@
     <context:component-scan base-package="com.zsm.springmvc.controller"/>
 
     <!-- 1.开启SpringMVC注解模式 -->
+    <!--<mvc:annotation-driven></mvc:annotation-driven>-->
     <mvc:annotation-driven conversion-service="conversionService">
         <!-- 指定http返回编码格式，不然返回ajax请求json会出现中文乱码 -->
         <mvc:message-converters>
@@ -124,7 +125,39 @@
     <import resource="applicationContext-dao.xml"></import>
 
     <!--校验器配置-->
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="properties.messages"></property>
+    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames" value="properties.messages">
+            &lt;!&ndash;<list>
+                &lt;!&ndash;<value>i18n.message</value>
+                <value>i18n.labels</value>&ndash;&gt;
+                <value>properties.messages</value>
+            </list>&ndash;&gt;
+        </property>
+    </bean>-->
+    <!-- 国际化 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!--message配置文件必须用classpath 或者 / -->
+        <property name="basename" value="i18n/message"></property>
+        <!-- 支持UTF-8的中文 -->
+        <property name="cacheSeconds" value="0"/>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"></property>
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <bean id="localeChangeInterceptor"
+              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+    <!--配置LocaleInterceptor-->
+    <!--<mvc:interceptors>-->
+        <!--<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>-->
+    <!--</mvc:interceptors>-->
+
+
 </beans>

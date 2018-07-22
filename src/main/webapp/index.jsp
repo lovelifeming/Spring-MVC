@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <style type="text/css">@import url("c:url value='/css/navigationbar.css'/>");</style>
     <link rel="icon" href="/resources/images/favicon.ico">
     <script type="text/javascript" src="/resources/js/lib/jquery-3.2.1.min.js"></script>
 </head>
@@ -16,7 +15,7 @@
     <a href="testget.jsp">Test Get</a><br>
     <a href="testupload.jsp">Test Upload</a><br>
     <a href="${pageContext.request.contextPath}/jump/download">Test DownLoad</a><br>
-
+    <a href="${pageContext.request.contextPath}/jump/i18n">I18n Test</a><br>
 
 </div>
 </body>

@@ -58,10 +58,11 @@
     <!--默认首页-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/security/index.jsp</welcome-file>
     </welcome-file-list>
     <session-config>
         <!--设置session超时时间  单位：分钟 Tomcat中Session的默认超时时间为20分钟-->
-        <session-timeout>60</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 
     <!-- 支持跨域 -->
@@ -93,4 +94,31 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
+    <!--错误页面拦截展示指定页面-->
+    <!--<error-page>
+        <error-code>404</error-code>
+        <location>/error.html</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/error.html</location>
+    </error-page>-->
+    <!--对资源进行限制访问-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>security</web-resource-name>
+            <url-pattern>/security/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <!--jsp配置-->
+    <jsp-config>
+        <jsp-property-group>
+            <!--所有jsp页面-->
+            <url-pattern>*.jsp</url-pattern>
+            <!--jsp页面禁用el表达式，true为真，false为假-->
+            <el-ignored>false</el-ignored>
+            <!--jsp页面禁用 <% scripting %> 语法，禁用内嵌java代码，true为真，false为假-->
+            <scripting-invalid>false</scripting-invalid>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>

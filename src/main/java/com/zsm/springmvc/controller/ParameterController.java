@@ -2,11 +2,14 @@ package com.zsm.springmvc.controller;
 
 import com.zsm.springmvc.mdel.User;
 import com.zsm.springmvc.mdel.UserValidator;
+import com.zsm.springmvc.pojo.Product;
+import com.zsm.springmvc.validation.ProductValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -60,4 +63,19 @@ public class ParameterController
         }
         return user.toString();
     }
+
+//    @RequestMapping(value = "/validateProduct")
+//    public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model)
+//    {
+//        ProductValidator productValidator = new ProductValidator();
+//        productValidator.validate(product, bindingResult);
+//        if (bindingResult.hasErrors())
+//        {
+//            FieldError fieldError = bindingResult.getFieldError();
+//            LOGGER.debug("Code:" + fieldError.getCode() + ", field:" + fieldError.getField());
+//            return "ProductForm";
+//        }
+//        model.addAttribute("productNew", new Product());
+//        return "product";
+//    }
 }
