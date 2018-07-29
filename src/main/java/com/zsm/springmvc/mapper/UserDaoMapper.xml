@@ -6,7 +6,7 @@
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.zsm.springmvc.dao.IUserDao">
-    <!--<resultMap id="BaseResultMap" type="com.zsm.springmvc.mdel.User">-->
+    <!--<resultMap id="BaseResultMap" type="com.zsm.springmvc.modell.User">-->
     <!--<id column="id" property="id" javaType="int" jdbcType="INTEGER"/>-->
     <!--<result column="Sno" properuser_noerNo" javaType="int" jdbcType="INTEGER"/>-->
     <!--<result column="Sname" properuser_nameName" javaType="string" jdbcType="VARCHAR"/>-->
@@ -18,11 +18,11 @@
     <!--</resultMap>-->
 
     <!--返回类型 resultType  返回Map resultMap-->
-    <select id="findUserByNo" resultType="com.zsm.springmvc.mdel.User" parameterType="int">
+    <select id="findUserByNo" resultType="com.zsm.springmvc.model.User" parameterType="int">
         SELECT * FROM student WHERE user_no = #{no}
     </select>
 
-    <select id="findUserByName" resultType="com.zsm.springmvc.mdel.User" parameterType="java.lang.String">
+    <select id="findUserByName" resultType="com.zsm.springmvc.model.User" parameterType="java.lang.String">
         SELECT * FROM student WHERE user_name = #{name}
     </select>
 

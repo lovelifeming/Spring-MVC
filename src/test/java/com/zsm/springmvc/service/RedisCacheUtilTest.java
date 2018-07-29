@@ -1,6 +1,6 @@
 package com.zsm.springmvc.service;
 
-import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

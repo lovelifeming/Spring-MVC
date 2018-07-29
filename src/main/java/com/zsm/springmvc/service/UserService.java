@@ -1,7 +1,6 @@
 package com.zsm.springmvc.service;
 
-import com.zsm.springmvc.mdel.User;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
+import com.zsm.springmvc.model.User;
 
 
 /**

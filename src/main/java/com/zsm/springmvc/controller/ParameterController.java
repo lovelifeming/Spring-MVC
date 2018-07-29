@@ -1,15 +1,12 @@
 package com.zsm.springmvc.controller;
 
-import com.zsm.springmvc.mdel.User;
-import com.zsm.springmvc.mdel.UserValidator;
-import com.zsm.springmvc.pojo.Product;
-import com.zsm.springmvc.validation.ProductValidator;
+import com.zsm.springmvc.model.User;
+import com.zsm.springmvc.model.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 

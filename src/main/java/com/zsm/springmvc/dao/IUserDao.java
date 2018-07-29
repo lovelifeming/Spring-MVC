@@ -1,6 +1,6 @@
 package com.zsm.springmvc.dao;
 
-import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.model.User;
 import org.springframework.stereotype.Repository;
 
 

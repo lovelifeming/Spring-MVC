@@ -1,6 +1,6 @@
 package com.zsm.springmvc.listener;
 
-import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.model.User;
 import com.zsm.springmvc.service.RedisCacheUtil;
 import com.zsm.springmvc.service.UserService;
 import org.apache.log4j.Logger;

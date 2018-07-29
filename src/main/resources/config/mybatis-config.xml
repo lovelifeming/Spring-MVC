@@ -31,4 +31,27 @@
             </setting>
         </setting>
     </settings>
+
+    <!-- 别名定义 -->
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="UserTable" type="com.zsm.springmvc.model.User"/>-->
+    <!--</typeAliases>-->
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="jdbc"/>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="url"-->
+                          <!--value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"/>-->
+                <!--<property name="username" value="root"/>-->
+                <!--<property name="password" value="123456"/>-->
+                <!--<property name="driver" value="com.mysql.jdbc.Driver"/>-->
+                <!--<property name="poolPingQuery" value="SELECT NOW()"/>-->
+                <!--<property name="poolPingEnabled" value="true"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+    <!--&lt;!&ndash; 映射文件配置，存放dao对应的sql语句配置文件 mapper文件可以放在resources目录下面&ndash;&gt;-->
+    <!--<mappers>-->
+        <!--<mapper resource="mapper/UserDaoMapper.xml"/>-->
+    <!--</mappers>-->
 </configuration>

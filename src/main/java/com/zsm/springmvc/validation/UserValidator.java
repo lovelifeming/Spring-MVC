@@ -1,6 +1,6 @@
 package com.zsm.springmvc.validation;
 
-import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.model.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;

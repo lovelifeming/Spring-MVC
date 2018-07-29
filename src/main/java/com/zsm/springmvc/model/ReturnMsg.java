@@ -1,4 +1,4 @@
-package com.zsm.springmvc.mdel;
+package com.zsm.springmvc.model;
 
 import java.util.HashMap;
 import java.util.Map;

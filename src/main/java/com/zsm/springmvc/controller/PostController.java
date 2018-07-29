@@ -1,7 +1,7 @@
 package com.zsm.springmvc.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.zsm.springmvc.mdel.User;
+import com.zsm.springmvc.model.User;
 import com.zsm.springmvc.pojo.UserModel;
 import com.zsm.springmvc.service.UserService;
 import net.sf.json.JSONObject;

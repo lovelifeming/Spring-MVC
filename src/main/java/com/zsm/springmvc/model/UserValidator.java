@@ -1,4 +1,4 @@
-package com.zsm.springmvc.mdel;
+package com.zsm.springmvc.model;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
