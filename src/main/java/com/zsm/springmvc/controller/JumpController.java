@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -85,6 +86,23 @@ public class JumpController
     {
         redirectAttributes.addFlashAttribute("param", "this had a redirect!");
         response.sendRedirect("http://www.baidu.com");
+    }
+
+    /**
+     * 打开新窗口，跳转页面，直接在浏览器访问接口跳转到新窗口(一般不用这种方式)
+     */
+    @RequestMapping("newPage")
+    public void redirectWrite(HttpServletResponse response, HttpServletRequest request, String url)
+    {
+        String context = "<script languge='javascript'>window.open(\"" + url + "\");</script>";
+        try
+        {
+            response.getWriter().write(context);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("i18n")
