@@ -74,6 +74,20 @@ public class JumpController
     }
 
     /**
+     * 通过forward跳转页面
+     *
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("forward")
+    public String jumpToForward(HttpServletResponse response)
+        throws IOException
+    {
+        return "forward:index.jsp";
+    }
+
+    /**
      * 重定向传值，通过Flash属性RedirectAttributes，并必须配置 <annotation-driven/>
      *
      * @param response
@@ -109,7 +123,7 @@ public class JumpController
     public String i18ntest(HttpServletResponse response, RedirectAttributes redirectAttributes)
         throws IOException
     {
-//        response.sendRedirect("i18test");
+        //response.sendRedirect("i18test");
         return "i18ntest";
     }
 }
